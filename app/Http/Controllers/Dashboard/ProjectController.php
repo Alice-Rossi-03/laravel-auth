@@ -52,7 +52,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-
+        return view('pages.dashboard.edit', compact('project'));
     }
 
     /**
@@ -72,6 +72,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect()->route('dashboard.projects.index');
     }
 }
