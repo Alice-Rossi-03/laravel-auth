@@ -24,7 +24,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.dashboard.create');
     }
 
     /**
@@ -32,7 +32,11 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $validated_data = $request->validated();
+        $slug = Project::generateSlug($request->title);
+        $validated_data['slug'] = $slug;
+        $new_project = Project::create($validated_data);
+        return redirect()->route('dashboard.projects.index');
     }
 
     /**
@@ -48,7 +52,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+
     }
 
     /**
@@ -56,7 +60,11 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $validated_data = $request->validated();
+        $slug = Project::generateSlug($request->title);
+        $validated_data['slug'] = $slug;
+        $project->update($validated_data);
+        return redirect()->route('dashboard.projects.index');
     }
 
     /**

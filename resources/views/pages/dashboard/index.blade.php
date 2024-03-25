@@ -4,6 +4,8 @@
 <div class="container">
     <h1 class="mt-2 fw-bold">My projects:</h1>
 
+    <a href="{{route('dashboard.projects.create')}}" class="btn btn-primary d-block ms-auto">Create A New Project</a>
+
     <table class="table table-striped mt-4">
         <thead>
           <tr>
@@ -14,7 +16,7 @@
         </thead>
         <tbody>
 
-            @foreach ( $projects as $project)
+            @foreach ( $projects as $project )
             <tr>
                 <th>{{$project->id}}</th>
                 <td>
