@@ -17,11 +17,11 @@
             @foreach ( $projects as $project)
             <tr>
                 <th>{{$project->id}}</th>
-                <td>{{$project->title}}</td>
+                <td>
+                <a href="{{route('dashboard.projects.show', $project->id)}}">{{$project->title}}</a></td>
                 <td>{{$project->slug}}</td>
               </tr>
             @endforeach
-
 
         </tbody>
       </table>
