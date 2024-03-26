@@ -4,7 +4,7 @@
 <div class="container">
     <h1 class="mt-2 fw-bold">Edit the project:</h1>
 
-    <form action="{{route('dashboard.projects.update', $project->id)}}" method="POST">
+    <form action="{{route('dashboard.projects.update', $project->slug)}}" method="POST">
 
         @csrf
         @method('PUT')

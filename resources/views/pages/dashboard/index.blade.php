@@ -20,7 +20,7 @@
             <tr>
                 <th>{{$project->id}}</th>
                 <td>
-                <a href="{{route('dashboard.projects.show', $project->id)}}">{{$project->title}}</a></td>
+                <a href="{{route('dashboard.projects.show', $project->slug)}}">{{$project->title}}</a></td>
                 <td>{{$project->slug}}</td>
               </tr>
             @endforeach

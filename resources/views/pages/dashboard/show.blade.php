@@ -7,9 +7,9 @@
 
 
     <div class="d-flex gap-2">
-        <a href="{{route('dashboard.projects.edit', $project->id)}}" class="btn btn-warning">EDIT</a>
+        <a href="{{route('dashboard.projects.edit', $project->slug)}}" class="btn btn-warning">EDIT</a>
 
-        <form action="{{route('dashboard.projects.destroy',$project->id)}}" method="POST">
+        <form action="{{route('dashboard.projects.destroy',$project->slug)}}" method="POST">
 
             @csrf
             @method('DELETE')
