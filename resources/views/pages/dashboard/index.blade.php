@@ -11,6 +11,7 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Title</th>
+            <th scope="col">Cover</th>
             <th scope="col">Slug</th>
           </tr>
         </thead>
@@ -19,8 +20,8 @@
             @foreach ( $projects as $project )
             <tr>
                 <th>{{$project->id}}</th>
-                <td>
-                <a href="{{route('dashboard.projects.show', $project->slug)}}">{{$project->title}}</a></td>
+                <td><a href="{{route('dashboard.projects.show', $project->slug)}}">{{$project->title}}</a></td>
+                <td>{{$project->cover ? 'Yes':'No'}}</td>
                 <td>{{$project->slug}}</td>
               </tr>
             @endforeach
