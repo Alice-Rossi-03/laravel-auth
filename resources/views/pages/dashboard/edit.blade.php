@@ -26,6 +26,17 @@
             </div>
 
             <div class="mb-3">
+
+                @if ($project->cover)
+                <label for="cover_img">Old Cover:</label>
+                <figure class="img-fluid" id="cover_img">
+                    <img src="{{ asset('/storage/' . $project->cover) }}" alt="{{ $project->title }}">
+                </figure>
+                @endif
+
+            </div>
+
+            <div class="mb-3">
                 <label for="cover" class="form-label">Insert The Cover</label>
                 <input type="file" class="form-control @error('cover') is-invalid @enderror" id="cover" aria-describedby="cover" name="cover"
                     value='{{ old('cover') ?? $project->cover }}'>
@@ -36,7 +47,7 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-primary d-block ms-auto">ADD</button>
+            <button type="submit" class="btn btn-primary d-block ms-auto">EDIT</button>
         </form>
 
     </div>

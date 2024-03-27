@@ -39,7 +39,7 @@ class ProjectController extends Controller
 
         if($request->hasFile('cover')){
             $img_path = Storage::disk('public')->put('projects_images', $request->cover);
-            $validated_data['cover'] = $img_path; 
+            $validated_data['cover'] = $img_path;
         }
 
         $new_project = Project::create($validated_data);
@@ -70,6 +70,17 @@ class ProjectController extends Controller
         $validated_data = $request->validated();
         $slug = Project::generateSlug($request->title);
         $validated_data['slug'] = $slug;
+
+        if($request->hasFile('cover')){
+            if($project->cover){
+                Storage::delete($project->cover);
+            }
+
+            $img_path = Storage::disk('public')->put('projects_images', $request->cover);
+
+            $validated_data['cover'] = $img_path; 
+        }
+
         $project->update($validated_data);
         return redirect()->route('dashboard.projects.index');
     }
@@ -79,6 +90,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if($project->cover){
+            Storage::delete($project->cover);
+        }
+
         $project->delete();
         return redirect()->route('dashboard.projects.index');
     }
