@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProjectController extends Controller
@@ -35,6 +36,12 @@ class ProjectController extends Controller
         $validated_data = $request->validated();
         $slug = Project::generateSlug($request->title);
         $validated_data['slug'] = $slug;
+
+        if($request->hasFile('cover')){
+            $img_path = Storage::disk('public')->put('projects_images', $request->cover);
+            $validated_data['cover'] = $img_path; 
+        }
+
         $new_project = Project::create($validated_data);
         return redirect()->route('dashboard.projects.index');
     }
